@@ -12,28 +12,14 @@ public class ActionUtil {
         this.driver = driver;
     }
 
-    // Hover over an element
     public void hoverOverElement(WebElement element) {
         Actions actions = new Actions(driver);
         actions.moveToElement(element).perform();
     }
 
-    // Drag and drop from source to target
-    public void dragAndDrop(WebElement source, WebElement target) {
+    public void clickElement(WebElement element) {
         Actions actions = new Actions(driver);
-        actions.dragAndDrop(source, target).perform();
-    }
-
-    // Right-click on an element
-    public void rightClick(WebElement element) {
-        Actions actions = new Actions(driver);
-        actions.contextClick(element).perform();
-    }
-
-    // Double-click on an element
-    public void doubleClick(WebElement element) {
-        Actions actions = new Actions(driver);
-        actions.doubleClick(element).perform();
+        actions.moveToElement(element).click().perform();
     }
 
 }

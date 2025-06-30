@@ -14,12 +14,13 @@ public class HomePage {
 
     // Example: Click on "Men" menu
     public WebElement getMenMenu() {
-        return driver.findElement(By.xpath("//span[text()='Men']"));
+        return driver.findElement(By.xpath("//*[text()='Men']"));
     }
+
 
     // Example: Click on "What's New" menu
     public WebElement getWhatsNewMenu() {
-        return driver.findElement(By.xpath("//span[text()=\"What's New\"]"));
+        return driver.findElement(By.xpath("//*[@id=\"ui-id-3\"]/span"));
     }
 
     // Search product
@@ -28,7 +29,9 @@ public class HomePage {
     }
 
     public void searchProduct(String productName) {
-        getSearchBox().sendKeys(productName);
-        getSearchBox().submit();
+        WebElement searchBox = getSearchBox();
+        searchBox.clear(); // Recommended to clear the field before typing
+        searchBox.sendKeys(productName);
+        searchBox.submit();
     }
 }
