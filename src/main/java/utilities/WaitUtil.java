@@ -10,22 +10,27 @@ import java.time.Duration;
 public class WaitUtil {
 
     WebDriver driver;
-    WebDriverWait wait;
 
-    public WaitUtil(WebDriver driver, int timeout){
+    public WaitUtil(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
     }
 
-    public void waitForElementToBeVisible(WebElement element) {
+    // Wait for element to be visible
+    public void waitForElementToBeVisible(WebElement element, int timeoutInSeconds) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public void waitForElementToBeClickable(WebElement element) {
+    // Wait for element to be clickable
+    public void waitForElementToBeClickable(WebElement element, int timeoutInSeconds) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public void waitForUrlToContain(String fraction) {
-        wait.until(ExpectedConditions.urlContains(fraction));
+    // Wait for page title to contain a specific text
+    public void waitForPageTitle(String titleContains, int timeoutInSeconds) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
+        wait.until(ExpectedConditions.titleContains(titleContains));
     }
+
 }
