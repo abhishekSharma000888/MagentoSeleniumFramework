@@ -6,15 +6,17 @@ import java.util.Properties;
 
 public class ConfigReader {
 
-    Properties prop;
+    private Properties prop;
 
     public ConfigReader() {
         try {
-            FileInputStream ip = new FileInputStream("config.properties");
+            // If your config file is inside src/test/resources
+            FileInputStream ip = new FileInputStream("/Users/abhisheksharma/Downloads/SDETProjects/MagentoSeleniumFramework/src/test/java/resources/config.properties");
             prop = new Properties();
             prop.load(ip);
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("Could not load config.properties file.");
         }
     }
 
