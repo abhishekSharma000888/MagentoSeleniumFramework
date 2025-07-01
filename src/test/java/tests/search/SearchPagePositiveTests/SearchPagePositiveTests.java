@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.CartPage;
 import pages.HomePage;
 import pages.SearchPage;
 import utilities.JavascriptUtil;
@@ -66,6 +67,7 @@ public class SearchPagePositiveTests extends BaseTest {
     public void validateSearchResultsCountIsGreaterThanZero() {
         HomePage homePage = new HomePage(driver);
         SearchPage searchPage = new SearchPage(driver);
+        CartPage cartPage = new CartPage(driver);
 
         // Correct: Use HomePage's searchProduct because it correctly submits
         homePage.searchProduct("Tank");
@@ -82,6 +84,7 @@ public class SearchPagePositiveTests extends BaseTest {
     public void validateAddingFirstProductToTheCart() {
         HomePage homePage = new HomePage(driver);
         SearchPage searchPage = new SearchPage(driver);
+        CartPage cartPage = new CartPage(driver);
 
         // Step 1: Search for the product
         homePage.searchProduct("Tank");
@@ -90,16 +93,20 @@ public class SearchPagePositiveTests extends BaseTest {
         wait.until(ExpectedConditions.urlContains("search"));
 
         // Step 2: Add the product to the cart and proceed to checkout
-        searchPage.addProductToTheCartAndProceedToCheckout();
+        cartPage.addProductToTheCartAndProceedToCheckout();
 
         // Step 3: Validate the cart/checkout URL
-        String actualCartUrl = searchPage.validateTheUrlOftheCart();
+        String actualCartUrl = cartPage.validateTheUrlOftheCart();
 
         // Example expected URL - Adjust this as per your app
         String expectedCartUrl = "https://magento.softwaretestingboard.com/checkout/#shipping";
 
         Assert.assertEquals(actualCartUrl, expectedCartUrl, "Cart URL is not as expected.");
     }
+
+    /*
+    Css selector = tagName[attribute=value]
+     */
 
 
 }

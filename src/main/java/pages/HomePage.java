@@ -34,4 +34,13 @@ public class HomePage {
         searchBox.sendKeys(productName);
         searchBox.submit();
     }
+
+    public void emptyProductSearch(){
+
+        //entering submit without adding any product to the search box!
+        WebElement searchBox = getSearchBox();
+        searchBox.submit();
+    }
+
+
 }
