@@ -34,4 +34,18 @@ public class HomePage {
         searchBox.sendKeys(productName);
         searchBox.submit();
     }
+
+    public void emptyProductSearch(){
+
+        //entering submit without adding any product to the search box!
+        WebElement searchBox = getSearchBox();
+        searchBox.submit();
+    }
+
+    // In HomePage.java
+    public void clickNonExistentMenu() {
+        driver.findElement(By.xpath("//a[@id='non-existent-menu']")).click();
+    }
+
+
 }

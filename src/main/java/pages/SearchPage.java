@@ -4,6 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.List;
 
 public class SearchPage {
 
@@ -31,7 +36,21 @@ public class SearchPage {
     }
 
     public void searchProduct(String productName) {
-        getSearchBox().sendKeys(productName);
-        getSearchBox().submit();
+        WebElement searchBox = getSearchBox();
+        searchBox.clear();
+        searchBox.sendKeys(productName);
+        searchBox.submit(); // Correct submission
     }
+
+    public List<WebElement> getAllProductsUsingCSS(){
+
+        return driver.findElements(By.cssSelector("li.product-item a.product-item-link"));
+    }
+
+    public WebElement pageTitle() {
+        WebDriverWait waitForElementToBeVisible = new WebDriverWait(driver, Duration.ofSeconds(8));
+        return waitForElementToBeVisible.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"maincontent\"]/div[1]/h1/span")));
+    }
+
+
 }
