@@ -40,4 +40,32 @@ public class HomePageNegativeTests extends BaseTest {
         Assert.assertEquals(actualErrorMessage.trim(), expectedErrorMessage, "Error message does not match!");
     }
 
+    @Description("Validate that the system behavior while searching for a product that does not exist.")
+    @Test
+    public void validateNonExistingProductInSearch() {
+        HomePage homePage = new HomePage(driver);
+        ProductPage productPage = new ProductPage(driver);
+
+        homePage.searchProduct("cooker");
+
+        String expectedErrorMessage = "Your search returned no results.";
+        String actualErrorMessage = productPage.validateErrorMessage();
+
+        Assert.assertEquals(actualErrorMessage.trim(), expectedErrorMessage, "Error message does not match!");
+    }
+
+    @Description("Validate behavior when clicking a non-existent menu item.")
+    @Test
+    public void validateClickOnNonExistentMenu() {
+        HomePage homePage = new HomePage(driver);
+
+        try {
+            homePage.clickNonExistentMenu(); // Assume you write a locator that doesn't exist
+            Assert.fail("The element should not be clickable.");
+        } catch (Exception e) {
+            Assert.assertTrue(e.getMessage().contains("no such element"), "Proper exception not thrown for non-existent element.");
+        }
+    }
+
+
 }

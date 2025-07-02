@@ -42,5 +42,10 @@ public class HomePage {
         searchBox.submit();
     }
 
+    // In HomePage.java
+    public void clickNonExistentMenu() {
+        driver.findElement(By.xpath("//a[@id='non-existent-menu']")).click();
+    }
+
 
 }
